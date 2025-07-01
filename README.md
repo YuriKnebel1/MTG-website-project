@@ -27,46 +27,51 @@ A comprehensive Magic: The Gathering collection management and deck building pla
 
 ## 📋 Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn package manager
 - Git
 
 ## 🛠️ Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd MTG-website
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up the database**
+
    ```bash
    npm run db:generate
    npm run db:migrate
    ```
 
 4. **Set up environment variables**
+
    ```bash
    # Copy the example env file and fill in your values
    cp .env.example .env.local
    ```
 
 5. **Run the development server**
+
    ```bash
    npm run dev
    ```
 
-6. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+6. **Open your browser** Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 🏃‍♂️ Scripts
 
 ### Development
+
 - `npm run dev` - Start development server with Turbopack
 - `npm run build` - Build for production
 - `npm start` - Start production server
@@ -75,12 +80,14 @@ A comprehensive Magic: The Gathering collection management and deck building pla
 - `npm run format` - Format code with Prettier
 
 ### Database
+
 - `npm run db:generate` - Generate Prisma client
 - `npm run db:migrate` - Run database migrations
 - `npm run db:studio` - Open Prisma Studio
 - `npm run db:seed` - Seed the database
 
 ### Testing
+
 - `npm test` - Run Jest tests
 - `npm run test:watch` - Run tests in watch mode
 - `npm run test:coverage` - Run tests with coverage report
@@ -116,10 +123,12 @@ public/                # Static assets
 ## 🗄️ API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/register` - User registration
 - `GET/POST /api/auth/[...nextauth]` - NextAuth.js endpoints
 
 ### Collection Management
+
 - `GET /api/collection` - Get user collection
 - `POST /api/collection/add` - Add card to collection
 - `DELETE /api/collection/remove` - Remove card from collection
@@ -127,12 +136,14 @@ public/                # Static assets
 - `GET /api/collection/count` - Get collection statistics
 
 ### Card Data
+
 - `GET /api/meta` - Get meta information
 - `GET /api/meta/untapped` - Get data from Untapped
 - `GET /api/prices/scryfall` - Get prices from Scryfall
 - `GET /api/prices/liga-magic` - Get prices from Liga Magic
 
 ### Utilities
+
 - `GET /api/health` - Health check endpoint
 - `POST /api/translate` - Translation service
 - `GET /api/test` - Test endpoint
@@ -142,6 +153,7 @@ public/                # Static assets
 The project includes comprehensive testing setup:
 
 ### Unit & Integration Tests
+
 ```bash
 # Run all tests
 npm test
@@ -154,6 +166,7 @@ npm run test:coverage
 ```
 
 ### E2E Tests
+
 ```bash
 # Run Playwright tests
 npm run test:e2e
