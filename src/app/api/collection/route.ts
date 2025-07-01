@@ -3,6 +3,14 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
+interface UserCardWithCard {
+  id: string;
+  quantity: number;
+  card: {
+    name: string;
+  };
+}
+
 export async function GET() {
   try {
     console.log('🔍 Buscando coleção do usuário...');
@@ -34,7 +42,7 @@ export async function GET() {
     });
 
     console.log('📊 Cartas encontradas:', user?.cards?.length || 0);
-    console.log('📝 Dados das cartas:', user?.cards?.map(uc => ({
+    console.log('📝 Dados das cartas:', user?.cards?.map((uc: UserCardWithCard) => ({
       id: uc.id,
       quantity: uc.quantity,
       cardName: uc.card.name

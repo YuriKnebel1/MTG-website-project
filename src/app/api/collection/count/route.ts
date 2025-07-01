@@ -3,6 +3,13 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
+interface UserCardData {
+  quantity: number;
+  condition: string;
+  foil: boolean;
+  language: string;
+}
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -42,9 +49,9 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const totalQuantity = userCards.reduce((sum, card) => sum + card.quantity, 0);
+    const totalQuantity = userCards.reduce((sum: number, card: UserCardData) => sum + card.quantity, 0);
 
-    const conditions = userCards.map(card => ({
+    const conditions = userCards.map((card: UserCardData) => ({
       condition: card.condition,
       foil: card.foil,
       quantity: card.quantity,
