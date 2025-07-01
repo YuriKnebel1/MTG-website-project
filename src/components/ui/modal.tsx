@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Button } from './button';
 
@@ -11,6 +11,34 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose, title, children, type = 'info' }: ModalProps) {
+  // Gerenciar foco no modal
+  useEffect(() => {
+    if (isOpen) {
+      // Focar no modal quando abrir
+      const modal = document.getElementById('modal-container');
+      if (modal) {
+        modal.focus();
+      }
+
+      // Prevenir scroll da página
+      document.body.style.overflow = 'hidden';
+      
+      // Fechar com ESC
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+      
+      document.addEventListener('keydown', handleEscape);
+      
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+        document.body.style.overflow = 'unset';
+      };
+    }
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const getTypeStyles = () => {
@@ -47,21 +75,34 @@ export function Modal({ isOpen, onClose, title, children, type = 'info' }: Modal
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={onClose}>
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" 
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
       <div 
+        id="modal-container"
         className={`bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 border-l-4 shadow-2xl ${getTypeStyles()}`}
         onClick={(e) => e.stopPropagation()}
+        tabIndex={-1}
+        role="document"
       >
         <div className="flex justify-between items-center mb-4">
-          <h3 className={`text-lg font-semibold flex items-center gap-2 ${getTitleStyles()}`}>
-            <span className="text-xl">{getIcon()}</span>
+          <h3 
+            id="modal-title"
+            className={`text-lg font-semibold flex items-center gap-2 ${getTitleStyles()}`}
+          >
+            <span className="text-xl" aria-hidden="true">{getIcon()}</span>
             {title}
           </h3>
           <button 
             onClick={onClose}
             className="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 transition-colors bg-gray-100 dark:bg-gray-700 rounded-full p-1 hover:bg-gray-200 dark:hover:bg-gray-600"
+            aria-label="Fechar modal"
           >
-            <X className="h-5 w-5" />
+            <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
         
