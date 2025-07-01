@@ -6,7 +6,7 @@ A comprehensive Magic: The Gathering collection management and deck building pla
 
 - **Card Collection Management**: Track your MTG card collection with detailed information
 - **Deck Builder**: Create and manage your MTG decks
-- **Price Tracking**: Monitor card prices from multiple sources (Scryfall, Liga Magic)
+- **Price Tracking**: Monitor card prices from Scryfall
 - **Meta Analysis**: Stay updated with current meta trends
 - **User Authentication**: Secure user accounts with NextAuth.js
 - **Responsive Design**: Beautiful, modern UI built with Tailwind CSS
@@ -140,7 +140,6 @@ public/                # Static assets
 - `GET /api/meta` - Get meta information
 - `GET /api/meta/untapped` - Get data from Untapped
 - `GET /api/prices/scryfall` - Get prices from Scryfall
-- `GET /api/prices/liga-magic` - Get prices from Liga Magic
 
 ### Utilities
 
@@ -201,7 +200,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - [Scryfall API](https://scryfall.com/docs/api) for MTG card data
-- [Liga Magic](https://www.ligamagic.com.br/) for Brazilian market prices
 - [Next.js](https://nextjs.org/) for the amazing framework
 - [Prisma](https://prisma.io/) for database management
 - [Tailwind CSS](https://tailwindcss.com/) for styling

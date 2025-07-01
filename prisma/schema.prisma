@@ -136,7 +136,7 @@ model PriceHistory {
   id        String   @id @default(cuid())
   cardId    String
   price     Float
-  source    String   // Liga Magic, TCGPlayer, etc.
+  source    String   // Scryfall, TCGPlayer, etc.
   condition String   @default("NM")
   foil      Boolean  @default(false)
   currency  String   @default("BRL")
